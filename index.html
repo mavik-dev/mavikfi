@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MAVIK · Web3 Content Writer</title>
+<meta name="description" content="I write about Web3, DeFi and cryptocurrency, with a focus on making technical products easier to understand.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#12162b;--paper:#f3f5fa;--card:#ffffff;--line:#d5dbec;--blue:#2f3df0;--blue-ink:#ffffff;--mark:#ffe45c;--muted:#4b5270;
+  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --body:"Source Serif 4",Georgia,"Times New Roman",serif;
+  color-scheme:light;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--ink:#eef0fb;--paper:#0f1224;--card:#171b33;--line:#2a3057;--blue:#8c97ff;--blue-ink:#0f1224;--mark:#5a4d00;--muted:#aab0d4;color-scheme:dark}
+}
+:root[data-theme="dark"]{--ink:#eef0fb;--paper:#0f1224;--card:#171b33;--line:#2a3057;--blue:#8c97ff;--blue-ink:#0f1224;--mark:#5a4d00;--muted:#aab0d4;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:1.125rem;line-height:1.65}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:4px}
+.wrap{max-width:68rem;margin:0 auto;padding:0 1.25rem}
+h1,h2,h3{font-family:var(--display);line-height:1.05;letter-spacing:-.02em;margin:0}
+nav{display:flex;justify-content:space-between;align-items:center;padding:1.25rem 0;font-family:var(--display);font-weight:700}
+nav .links{display:flex;gap:1.25rem;font-weight:500;font-size:.98rem}
+nav a{text-decoration:none}nav a:hover{text-decoration:underline}
+.logo{font-size:1.35rem;letter-spacing:-.03em}
+.hero{padding:3rem 0 4.5rem}
+.hero h1{font-size:clamp(2.8rem,9vw,6.4rem);font-weight:800;max-width:14ch}
+.hero p.lead{max-width:34rem;margin:1.5rem 0 0;color:var(--muted)}
+.btns{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.75rem}
+.btn{font-family:var(--display);font-weight:700;font-size:1rem;padding:.85rem 1.3rem;border-radius:999px;text-decoration:none;border:2px solid var(--ink);display:inline-block}
+.btn.main{background:var(--blue);border-color:var(--blue);color:var(--blue-ink)}
+.btn:hover{transform:translateY(-2px)}
+.translate{margin-top:3rem;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:1.4rem;max-width:44rem}
+.translate .tabs{display:inline-flex;border:2px solid var(--ink);border-radius:999px;padding:3px;gap:3px}
+.translate button.tab{font-family:var(--display);font-weight:700;font-size:.95rem;border:0;background:transparent;color:var(--ink);padding:.5rem 1rem;border-radius:999px;cursor:pointer}
+.translate button.tab[aria-selected="true"]{background:var(--ink);color:var(--paper)}
+.translate p{margin:1.1rem 0 0;font-size:1.2rem;min-height:7.5rem}
+.jargon{background:linear-gradient(transparent 58%,var(--mark) 58%)}
+.note{font-size:.95rem;color:var(--muted);margin-top:.75rem}
+section{padding:4.5rem 0;border-top:1px solid var(--line)}
+section h2{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;max-width:20ch}
+.sub{color:var(--muted);max-width:36rem;margin:.9rem 0 0}
+.services{list-style:none;padding:0;margin:2.2rem 0 0;display:grid;gap:0;border-top:2px solid var(--ink)}
+.services li{display:grid;gap:.2rem;padding:1.15rem 0;border-bottom:1px solid var(--line)}
+.services strong{font-family:var(--display);font-size:1.45rem}
+.services span{color:var(--muted)}
+@media(min-width:48rem){.services li{grid-template-columns:19rem 1fr;gap:2rem;align-items:baseline}}
+.sample{display:grid;gap:2rem;margin-top:2.6rem}
+@media(min-width:56rem){.sample.two{grid-template-columns:1fr 1fr;align-items:start}}
+.meta{font-size:.95rem;color:var(--muted)}
+.sample h3{font-size:clamp(1.6rem,3.6vw,2.3rem);font-weight:700;margin:.4rem 0 .8rem}
+.sample p{margin:0 0 1rem;max-width:34rem}
+.phone{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:1.2rem;max-width:26rem}
+.phone .who{display:flex;gap:.6rem;align-items:center;font-family:var(--display);font-weight:700;font-size:.95rem}
+.phone .av{width:2.2rem;height:2.2rem;border-radius:50%;background:var(--blue);color:var(--blue-ink);display:grid;place-items:center;font-weight:800}
+.phone .who small{font-weight:500;color:var(--muted);display:block;line-height:1.1}
+#post{min-height:13.5rem;margin:1rem 0;font-size:1.05rem;line-height:1.55;white-space:pre-line}
+.step{display:flex;align-items:center;justify-content:space-between;gap:.5rem;border-top:1px solid var(--line);padding-top:.8rem;font-family:var(--display);font-weight:700}
+.step button{font-family:var(--display);font-weight:700;border:2px solid var(--ink);background:transparent;color:var(--ink);border-radius:999px;padding:.4rem .95rem;cursor:pointer}
+.step button:disabled{opacity:.35;cursor:default}
+blockquote{margin:0;padding:1.2rem 1.4rem;border-left:5px solid var(--blue);background:var(--card);border-radius:0 14px 14px 0;font-size:1.15rem}
+.rules{display:grid;gap:1.6rem;margin-top:2.2rem}
+@media(min-width:48rem){.rules{grid-template-columns:repeat(2,1fr);gap:2.2rem 3rem}}
+.rules h3{font-size:1.35rem;margin-bottom:.35rem}
+.rules p{margin:0;color:var(--muted)}
+.contact{padding-bottom:5rem}
+.contact h2{max-width:16ch}
+footer{border-top:1px solid var(--line);padding:1.5rem 0 2.2rem;font-size:.95rem;color:var(--muted)}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.75rem 1.5rem}
+.flinks{display:flex;gap:1.25rem}.flinks a{text-decoration:none}.flinks a:hover{text-decoration:underline}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn:hover{transform:none}}
+.full{margin-top:1.2rem;border-top:1px solid var(--line)}
+.full summary{cursor:pointer;font-family:var(--display);font-weight:700;padding:.9rem 0;list-style:none}
+.full summary::-webkit-details-marker{display:none}
+.full[open] summary{color:var(--blue)}
+.art{max-width:40rem}
+.art h4{font-family:var(--display);font-size:1.45rem;letter-spacing:-.01em;margin:2.2rem 0 .5rem}
+.art h5{font-family:var(--display);font-size:1.1rem;margin:1.5rem 0 .3rem}
+.art p{margin:0 0 1rem}.art ul{margin:0 0 1rem;padding-left:1.3rem}
+.art table{width:100%;border-collapse:collapse;font-size:1rem;margin:1rem 0}
+.art th,.art td{text-align:left;padding:.6rem .7rem;border-bottom:1px solid var(--line);vertical-align:top}
+.art th{font-family:var(--display)}
+.art .src{font-size:.95rem;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav aria-label="Main">
+    <span class="logo">MAVIK</span>
+    <span class="links"><a href="#focus">Focus</a><a href="#samples">Samples</a><a href="#contact">Contact</a></span>
+  </nav>
+
+  <header class="hero">
+    <h1>Web3 content writer.</h1>
+    <p class="lead">I write about Web3, DeFi and cryptocurrency, with a focus on making technical products easier to understand.</p>
+    <p class="lead">My work includes educational threads, project explainers and crypto research. I pay attention to how a product actually works, not just how a project describes itself. That means explaining the benefits alongside the limitations and risks.</p>
+    <div class="btns">
+      <a class="btn main" href="https://x.com/mavikfi">DM on X</a>
+      <a class="btn" href="#samples">Read the samples</a>
+    </div>
+
+    <div class="translate" aria-live="polite">
+      <div class="tabs" role="tablist" aria-label="Show the same idea two ways">
+        <button class="tab" role="tab" id="t-jargon" aria-selected="true">Jargon</button>
+        <button class="tab" role="tab" id="t-plain" aria-selected="false">Plain English</button>
+      </div>
+      <p id="demo"></p>
+      <div class="note">Same idea, two ways. Tap the tabs to switch.</div>
+    </div>
+  </header>
+</div>
+
+<section id="focus"><div class="wrap">
+  <h2>Areas of focus</h2>
+  <ul class="services">
+    <li><strong>Web3 educational content</strong></li>
+    <li><strong>Technical and project explainers</strong></li>
+    <li><strong>DeFi education</strong></li>
+    <li><strong>Crypto research and analysis</strong></li>
+    <li><strong>Educational X posts and threads</strong></li>
+  </ul>
+</div></section>
+
+<section id="samples"><div class="wrap">
+  <h2>Samples</h2>
+  <p class="sub">The following samples demonstrate how I approach technical subjects and communicate them to readers who may be new to the industry.</p>
+
+  <div class="sample two">
+    <div>
+      <div class="meta">Sample 1 · DeFi Educational Thread</div>
+      <h3>How DeFi Lending Actually Works</h3>
+      <p><b>Format:</b> X Thread, 8 Posts<br><b>Audience:</b> Beginners in Crypto and Web3<br><b>Goal:</b> Explain how people lend, borrow, earn interest and get hurt, in simple language.</p>
+    </div>
+    <div class="phone">
+      <div class="who"><span class="av">M</span><span>MAVIK<small>@MavikFi</small></span></div>
+      <div id="post"></div>
+      <div class="step"><button id="prev" aria-label="Previous post">Back</button><span id="count">1/8</span><button id="next" aria-label="Next post">Next</button></div>
+    </div>
+  </div>
+
+  <div class="sample">
+    <div>
+      <div class="meta">Sample 2 · Web3 Project Explainer</div>
+      <h3>Jupiter: Finding Better Swap Prices on Solana</h3>
+      <p><b>Project:</b> Jupiter<br><b>Category:</b> Solana DeFi<br><b>Format:</b> Educational Project Explainer<br><b>Audience:</b> People new to Web3 and decentralized exchanges<br><b>Goal:</b> Explain what Jupiter does, what problem it addresses, how a swap works, and what users should know before using it.</p>
+      <details class="full"><summary>Read the full explainer</summary>
+      <div class="art">
+<p>You have SOL in your wallet and want to swap it for another token.</p>
+<p>You open a swap platform, enter an amount and get a quote.</p>
+<p>But is it a good price?</p>
+<p>Different platforms can quote different amounts. The result depends on liquidity, fees and the size of your trade. Checking them all by hand is slow. That is the problem Jupiter is built to solve.</p>
+<h4>1. What Jupiter Is</h4>
+<p>Jupiter is a DeFi platform in the Solana ecosystem. Its best-known product is a token swap service.</p>
+<p>In simple terms, it looks across available liquidity sources and finds a route for your swap, so you don’t have to check each decentralized exchange yourself.</p>
+<p>Think of it like a travel search site. You don’t visit every airline. One search compares them for you.</p>
+<p>A found route doesn’t guarantee the trade will succeed or fill at the quoted price.</p>
+<h4>2. The Problem It Addresses</h4>
+<p>Say you want to swap SOL for USDC, a stablecoin designed to track the US dollar.</p>
+<p>One exchange might give you one price. Another might give you more, or a multi-step route might beat both once liquidity and fees are counted.</p>
+<p>For a beginner, comparing all of that is a hassle. Jupiter handles it through routing and aggregation. It searches the available options and picks a route for your swap.</p>
+<h4>3. How a Swap Works</h4>
+<p>Let’s walk through swapping 1 SOL for USDC.</p>
+<p><b>Step 1: Pick your tokens.</b><br>Choose SOL as the one you’re giving and USDC as the one you want. Enter the amount.</p>
+<p><b>Step 2: Jupiter finds a route.</b><br>It checks available options, which can include onchain liquidity and quotes from other routing providers. A route might use one pool or chain several steps together.</p>
+<p><b>Step 3: Review the quote.</b><br>You see how much you can expect to receive and the key transaction details. This is your chance to check before signing.</p>
+<p><b>Step 4: Approve the transaction.</b><br>Connect a Solana wallet and sign. The swap is submitted, and if it succeeds, the new token lands in your wallet.</p>
+<p>The final result can differ from the quote if the market moves or execution runs into problems.</p>
+<h4>4. Why People Use It</h4>
+<ul><li><b>Less manual comparison:</b> One interface instead of checking many markets.</li><li><b>Better routes, sometimes:</b> Depending on the token and liquidity, a routed swap can beat a single market.</li><li><b>Easier for beginners:</b> You don’t need to understand every venue behind the trade.</li><li><b>Useful for developers:</b> Jupiter offers swap APIs that teams can plug into their own apps.</li></ul>
+<p class="src">Source: Jupiter Developer Docs</p>
+<h4>5. Limits and Risks</h4>
+<p>Jupiter makes swapping simpler. It does not remove the risks of decentralized trading.</p>
+<ul><li><b>Price movement:</b> Prices can change between quote and execution.</li><li><b>Slippage:</b> The gap between the price you expected and the price you got. You might expect a set amount of USDC and receive less because the market moved first.</li><li><b>Thin liquidity:</b> Liquidity means how easily something can be traded without moving its price. A token with little liquidity can give poor execution even when a route exists. Some tokens have no usable route at all.</li><li><b>Fees:</b> Network fees apply, and swap or platform fees may too. Costs depend on the route.</li><li><b>Token risk:</b> A route to a token does not mean the token is legit, valuable or safe. Tokens can come with misleading claims or concentrated ownership. Being listed on a swap interface is not an endorsement.</li></ul>
+<h4>6. The Takeaway</h4>
+<p>Jupiter solves a real problem: finding a good way to swap tokens without checking every market yourself.</p>
+<p>But an easier swap is not automatically a smart trade.</p>
+<p>Before you swap, understand the token, check the expected output and fees, and ask whether there’s enough liquidity for your size.</p>
+<p>Convenience is useful. Knowing what you’re buying is still on you.</p>
+      </div></details>
+    </div>
+  </div>
+
+  <div class="sample">
+    <div>
+      <div class="meta">Sample 3 · Crypto Research Article</div>
+      <h3>How to Research a Crypto Project Before You Buy</h3>
+      <p>A practical guide to looking past the hype.</p>
+      <details class="full"><summary>Read the full article</summary>
+      <div class="art">
+<p>A crypto project can have a slick website, thousands of followers and a token that keeps climbing, and still be a terrible investment.</p>
+<p>The trouble is that most people only start researching once they already want in. They see a post on X, hear about the next big thing, or watch a token run. Then the fear of missing out kicks in.</p>
+<p>That’s when the important questions get skipped.</p>
+<p>Who’s behind this? What does the token actually do? Where does demand come from? Can you sell when you want to? What happens if the people promoting it move on tomorrow?</p>
+<p>Research won’t tell you where the price goes next. It will help you tell projects with evidence behind them from ones that run mostly on speculation.</p>
+<p>Here’s a process you can follow.</p>
+<h4>1. Start With the Project, Not the Price</h4>
+<p>Before you open the chart, work out what you’re looking at. Is it a blockchain, a DeFi app, a game, a token tied to a product, or a meme coin?</p>
+<p>Each needs different research. For a DeFi platform, check whether people really use its lending or trading. For a blockchain, look at developer activity, apps and network usage. For a meme coin, look at community behavior, token distribution, liquidity and whether demand lasts past a burst of attention.</p>
+<p>Start with one question: why does this token exist, and why would anyone hold or use it?</p>
+<p>Read the website and docs, but don’t stop at the project’s own claims. If it says thousands of people use the product, look for proof. Some tokens have a clear function. Others are mostly speculative, with prices driven by attention. Knowing which one you’re dealing with changes what you should ask.</p>
+<h4>2. Make Sure You Have the Right Token</h4>
+<p>It sounds basic, and getting it wrong can cost you.</p>
+<p>Scammers copy names, logos, websites and social accounts. On decentralized exchanges, a token with the right name and a familiar logo can still be a fake.</p>
+<p>Find the official contract address, the unique identifier of a token on its blockchain, from a trusted official source. Then match it against what your trading platform or blockchain explorer shows.</p>
+<p>Never copy an address from a random reply, an influencer’s comment or a DM.</p>
+<p>For a Solana meme coin, you can use the mint address to find the asset on a block explorer and check its onchain activity. Tools like Dexscreener show trading pairs, liquidity and transaction history, though you still need to interpret what you see.</p>
+<p>The right address doesn’t make a token safe. It just means you’re researching the right thing.</p>
+<h4>3. Understand the Tokenomics</h4>
+<p>Tokenomics covers how many tokens exist, who holds them, how new ones enter circulation and what the token is for.</p>
+<p>It matters because a project can have real users and still have a token that struggles under its own supply.</p>
+<h5>Start With Three Numbers</h5>
+<ul><li><b>Circulating supply:</b> Tokens currently in circulation.</li><li><b>Market cap:</b> Price times circulating supply.</li><li><b>Fully diluted valuation (FDV):</b> Price times total or maximum supply.</li></ul>
+<p>A quick example. A token trades at $0.10 with 10 million in circulation. Market cap is $1 million. If total supply is 100 million, FDV is $10 million.</p>
+<p>That gap matters. If lots of new tokens can unlock later, holders may face dilution or selling pressure. It doesn’t mean the price must fall, but it’s a risk to understand.</p>
+<h5>Check Who Owns the Supply</h5>
+<p>Then ask who owns the supply. How much sits with the team, early investors or a few wallets? Are tokens locked, and when do the locks end? Are unlocks scheduled?</p>
+<p>A big wallet isn’t automatic proof of manipulation. It could belong to an exchange or a liquidity pool. Verify before you conclude anything.</p>
+<h4>4. Look for Real Demand</h4>
+<p>A rising price brings attention. It doesn’t prove lasting demand.</p>
+<p>Look at what’s behind the chart. For a protocol, check active users, transactions, fees, revenue where it applies, and whether people come back. For a blockchain, check usage, apps and developers. For a meme coin, check trading activity, unique participants, community engagement and liquidity.</p>
+<p>The key difference is activity versus real adoption. Transaction counts can look great with few genuine users. Followers can grow without an engaged community. High volume can be pure speculation.</p>
+<p>Compare activity over time, not one snapshot. Is usage growing steadily, or did it spike after a campaign? Do people use the product because it solves something, or is the token the only reason anyone cares?</p>
+<p>Look for independent proof too. If a project claims big partnerships, check whether the partners confirm them. If it announces a launch, find the product and see if it works.</p>
+<p>A project’s claims are where research starts, not where it ends.</p>
+<h4>5. Check Liquidity and Whether You Can Sell</h4>
+<p>This is one of the most important checks, especially for small tokens and new meme coins.</p>
+<p>Liquidity is how much trading the market can absorb. It decides whether you can buy or sell without moving the price much.</p>
+<p>Imagine a token with a $500,000 market cap. That doesn’t mean $500,000 is available to cash out. Market cap is a valuation from price and supply. Liquidity is a separate measure.</p>
+<h5>Before Buying, Ask:</h5>
+<ul><li>How much liquidity is in the pool?</li><li>Is it locked, under what conditions and until when?</li><li>Is volume consistent?</li><li>Are buys and sells going through normally?</li><li>Would selling your planned position move the price a lot?</li></ul>
+<p>A token can show big volume and still be hard to exit. In a shallow market, a small amount of money can push the price up fast. When early buyers try to sell into that same market, the price can collapse before everyone gets out.</p>
+<p>So think about what you could realistically sell, not the profit on your screen.</p>
+<p>If you can’t explain how you’d exit, you haven’t finished researching.</p>
+<h4>6. Check the Team, the Code and Who Holds Control</h4>
+<p>A project is more than branding. Someone may be able to change its code, control its treasury, mint new tokens or alter its rules.</p>
+<h5>Investigate the Team</h5>
+<p>Start with the people. Can you verify who they are and what they’ve built? Do their public claims match what you can confirm independently?</p>
+<p>An anonymous team isn’t automatically dishonest. Pseudonymous builders are common in crypto. But anonymity makes accountability harder, so weigh that instead of ignoring it.</p>
+<h5>Review Smart Contract Security</h5>
+<p>For projects with smart contracts, look for independent audits and read what they actually cover.</p>
+<p>A smart contract is code that runs on a blockchain. Bugs or special permissions can allow stolen funds, blocked transfers or changed rules.</p>
+<p>An audit helps, but it’s not a guarantee. Check which contract was audited, whether the deployed code matches it, whether major issues were fixed and whether the project changed afterward.</p>
+<h5>Check Administrative Permissions</h5>
+<p>Also check admin permissions. Can someone mint more tokens, pause transfers, blacklist addresses or upgrade the contract? These aren’t automatically malicious, but buyers should know about them.</p>
+<p>For meme coins, look at minting authority, freeze authority, holder concentration, pool ownership and similar permissions, depending on the chain.</p>
+<p>You’re not looking for a perfect project. You’re trying to understand what could go wrong, who has the power to cause or prevent it, and what safeguards exist.</p>
+<h4>7. Separate a Good Story From a Good Investment</h4>
+<p>Crypto moves on narratives. AI, gaming, decentralized infrastructure and meme culture all pull in attention and money.</p>
+<p>A strong story gets a project noticed. It doesn’t make the token valuable.</p>
+<p>Ask what connects the story to the token. Does the token have a real role in the product? Is there a reason demand could grow as the project grows? Is there evidence of progress, or is the pitch mostly about what’s coming?</p>
+<p>For meme coins, the case may be mostly attention, community and market mood. If so, don’t pretend there’s utility that isn’t there. Judge the token by the risks that actually drive its price.</p>
+<p>Be careful with guaranteed returns, secret opportunities and pressure to buy now. The US Commodity Futures Trading Commission has warned about pump-and-dump schemes in thinly traded digital assets, where promoters get buyers to chase a spike before the market collapses.</p>
+<p>Hype tells you where attention is. It doesn’t tell you what something is worth.</p>
+<h4>8. Try to Prove Yourself Wrong</h4>
+<p>This is where research becomes useful instead of just confirming what you hoped.</p>
+<p>Once you’ve found reasons a project might work, go looking for evidence against it. Maybe unlocks are coming. Maybe most activity came from one promo burst. Maybe the team made claims it can’t back up. Maybe a competitor already does it better.</p>
+<p>Write down why you’d buy. Then write down what would change your mind.</p>
+<p>For a long-term bet, that could be adoption stalling, development stopping, or the token having no link to the product’s success. For a short-term meme trade, it could be liquidity drying up, large holders selling or trading activity vanishing.</p>
+<p>These are different bets and need different exit rules. A long-term thesis shouldn’t be managed like a trade that lasts a few hours.</p>
+<p>You can’t predict everything. You just need to know which developments would break your reason for buying.</p>
+<h4>9. Decide With Evidence, Not Excitement</h4>
+<p>Before you put money in, summarize what you found. A simple sheet helps:</p>
+<table><tr><th>Area</th><th>What to Establish</th></tr>
+<tr><td>Identity</td><td>Is this the real token and the official project?</td></tr>
+<tr><td>Purpose</td><td>What does it do, and why might people need it?</td></tr>
+<tr><td>Tokenomics</td><td>What’s the supply, who holds it, what unlocks are coming?</td></tr>
+<tr><td>Adoption</td><td>Is there verifiable evidence of real activity?</td></tr>
+<tr><td>Liquidity</td><td>Can you realistically get in and out at your size?</td></tr>
+<tr><td>Security</td><td>What vulnerabilities or admin powers create risk?</td></tr>
+<tr><td>Narrative</td><td>Is demand backed by evidence or mostly promotion?</td></tr>
+<tr><td>Invalidation</td><td>What would make you skip it or exit?</td></tr></table>
+<p>Not every answer needs to be good. You need enough reliable information to understand both the opportunity and its weak points.</p>
+<p>Some projects pass most checks but are still too expensive. Some have interesting tech and weak token economics. Some have a great community and not enough liquidity. Some leave so many questions open that walking away is the smart call.</p>
+<p>That’s a valid result. Not buying beats forcing a decision you can’t justify.</p>
+<h4>Final Thoughts</h4>
+<p>Research isn’t about finding a token that can’t fail. Nothing can promise that, and even projects with real products and credible teams lose value.</p>
+<p>The goal is to cut avoidable mistakes.</p>
+<p>Verify the asset. Understand the supply. Look for real demand. Check liquidity, security and control. Question the story. Then decide what would prove you wrong.</p>
+<p>Don’t mistake a popular token for a good investment, a rising price for real adoption, or an audit for a guarantee.</p>
+<p>Good research won’t promise you a win. It shows you what you’re getting into, what could go wrong, and whether the reward is worth the risk.</p>
+<p><i>This article is for educational purposes only and is not financial advice. Crypto assets are highly speculative, and you can lose your entire investment.</i></p>
+<h5>Sources</h5>
+<ul class="src"><li>U.S. Commodity Futures Trading Commission: Caution When Buying Digital Coins or Tokens</li><li>U.S. Commodity Futures Trading Commission: Beware Virtual Currency Pump-and-Dump Schemes</li><li>U.S. Securities and Exchange Commission: Investor Bulletin on Initial Coin Offerings</li></ul>
+      </div></details>
+    </div>
+  </div>
+</div></section>
+
+<section id="contact" class="contact"><div class="wrap">
+  <h2>Open to working with Web3 projects building something worth talking about.</h2>
+  <p class="sub">MAVIK | Web3 Content Writer. Available for freelance writing, Web3 research, educational content and crypto project breakdowns.</p>
+  <div class="btns">
+    <a class="btn main" href="https://x.com/mavikfi">X: @MavikFi</a>
+    <a class="btn" href="mailto:danieldominics30@gmail.com">danieldominics30@gmail.com</a>
+  </div>
+</div></section>
+
+<footer><div class="wrap foot"><span>© 2026 MAVIK. Web3 Content Writer.</span><span class="flinks"><a href="#samples">Samples</a><a href="https://x.com/mavikfi">X</a><a href="mailto:danieldominics30@gmail.com">Email</a></span></div></footer>
+
+<script>
+var demo={jargon:"Suppliers deposit assets into an over-collateralized lending pool, and the utilization rate sets the variable APY.",plain:"You put your USDC into a shared pool. Borrowers pay to use it, and you earn a share of that. The rate moves with how much people are borrowing."};
+var d=document.getElementById("demo"),tj=document.getElementById("t-jargon"),tp=document.getElementById("t-plain");
+function show(k){d.innerHTML=k==="jargon"?'<span class="jargon"></span>':"";if(k==="jargon"){d.firstChild.textContent=demo.jargon}else{d.textContent=demo.plain}
+tj.setAttribute("aria-selected",k==="jargon");tp.setAttribute("aria-selected",k==="plain")}
+tj.onclick=function(){show("jargon")};tp.onclick=function(){show("plain")};show("jargon");
+
+var posts=[
+"Most people assume lending needs a bank.\nIn DeFi, it needs a smart contract.\nHere’s how DeFi lending works, where the yield comes from, and where people get burned 🧵",
+"First, what is DeFi?\nDecentralized finance. Financial services that run on smart contracts, which are programs on a blockchain that follow fixed rules.\nNo loan officer. No approval queue. You connect a wallet and the code handles the rest.",
+"Say you hold USDC and it’s sitting idle.\nYou deposit it into a lending protocol. Your funds join a shared pool.\nOther users can borrow from that pool, as long as they meet the protocol’s rules and there’s enough liquidity available.",
+"So where does your interest come from?\nBorrowers. They pay interest to use the funds, and the protocol passes a share of it to suppliers.\nYour return isn’t fixed. It moves with borrowing demand, available liquidity, fees and how the protocol is designed.",
+"Why borrow instead of just selling?\nBecause some people want cash without giving up an asset they believe in.\nThe catch: they post collateral, and if its price falls far enough, the position can be liquidated. That means the collateral gets sold to cover the loan.\nBorrowing against volatile assets is a real risk.",
+"Here’s what beginners miss:\nDeFi is not risk-free.\nSmart contract bugs, oracle failures (bad price data), thin liquidity and weak design can all cost users money.\nA protocol that has run fine for years can still fail.",
+"Before you deposit anything, do your homework:\nHow does the protocol work?\nWhich assets does it support?\nWhat are the collateral rules?\nHas it been exploited or audited?\nWhat risks does its own documentation admit to?\nAn advertised yield is not a guarantee.",
+"The takeaway:\nDeFi lending lets people lend and borrow without going through a bank.\nBut knowing where the yield comes from is only half the job.\nKnowing how you could lose money is the other half."
+];
+var i=0,p=document.getElementById("post"),c=document.getElementById("count"),pv=document.getElementById("prev"),nx=document.getElementById("next");
+function go(n){i=n;p.textContent=posts[i];c.textContent=(i+1)+"/"+posts.length;pv.disabled=i===0;nx.disabled=i===posts.length-1}
+pv.onclick=function(){go(i-1)};nx.onclick=function(){go(i+1)};go(0);
+</script>
+</body>
+</html>
